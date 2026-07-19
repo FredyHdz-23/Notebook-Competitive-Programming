@@ -32,6 +32,7 @@ cp-notebook/
 ├── strings/
 │   ├── kmp.cpp
 │   └── hashing.cpp            # polynomial rolling hash
+|   └── manacher.cpp     
 └── misc/
     ├── binary_search_on_answer.cpp
     ├── two_pointers.cpp
