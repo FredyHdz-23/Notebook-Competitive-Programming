@@ -3,6 +3,8 @@
  * Minimalista a proposito: solo lo que realmente uso en cada problema.
  */
 #include <bits/stdc++.h>
+#include <boost/multiprecision/cpp_int.hpp>
+using namespace boost::multiprecision; // usar números gigantescos, mayor que cualquier tipo de dato
 using namespace std;
 
 typedef long long ll;
@@ -23,6 +25,7 @@ const int MOD = 1e9 + 7;
 const ll INF = 1e18;
 
 void solve() {
+    cpp_int x; // declarar numero, las operaciones siguen siendo iguales
     // logica del problema aqui
 }
 
