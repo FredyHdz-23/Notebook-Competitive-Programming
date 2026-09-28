@@ -3,30 +3,37 @@
 // substring matching rapido
 #include <bits/stdc++.h>
 using namespace std;
-typedef long long ll;
+typedef unsigned long long ull;
 
-const ll MOD = 1e9 + 7;
-const ll BASE = 131;
+const ull MOD = (1ULL << 61) - 1;
+mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());
+const ull BASE = rng() % (MOD - 1000) + 500;
 
-struct StringHash {
-    vector<ll> hashVal, power;
+ull mulmod(ull a, ull b) {
+    __uint128_t t = (__uint128_t)a * b;
+    ull r = (ull)(t & MOD) + (ull)(t >> 61);
+    return r >= MOD ? r - MOD : r;
+}
 
-    StringHash(string &s) {
+struct Hash {
+    vector<ull> h, pw;
+    Hash() {}
+    Hash(const string& s) { build(s); }
+
+    void build(const string& s) {
         int n = s.size();
-        hashVal.assign(n + 1, 0);
-        power.assign(n + 1, 1);
-
+        h.assign(n + 1, 0);
+        pw.assign(n + 1, 1);
         for (int i = 0; i < n; i++) {
-            hashVal[i+1] = (hashVal[i] * BASE + s[i]) % MOD;
-            power[i+1] = (power[i] * BASE) % MOD;
+            h[i + 1] = mulmod(h[i], BASE) + (unsigned char)s[i] + 1;
+            if (h[i + 1] >= MOD) h[i + 1] -= MOD;
+            pw[i + 1] = mulmod(pw[i], BASE);
         }
     }
 
-    // hash del substring [l, r], 0-indexed, inclusive
-    ll getHash(int l, int r) {
-        ll res = (hashVal[r+1] - hashVal[l] * power[r-l+1]) % MOD;
-        if (res < 0) res += MOD;
-        return res;
+    ull get(int l, int r) const {
+        ull x = h[r] + MOD - mulmod(h[l], pw[r - l]);
+        return x >= MOD ? x - MOD : x;
     }
 };
 
