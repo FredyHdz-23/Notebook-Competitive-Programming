@@ -37,7 +37,7 @@ struct Hash {
     }
 };
 
-(mulmod(ha, pw[lenB]) + hb) % MOD //concatenar dos hashes
+(mulmod(ha, pw[lenB]) + hb) % MOD //concatenar dos hashesf
 
 // Nota: para reducir colisiones en problemas dificiles, usar doble hashing
 // (dos MOD y BASE distintos) y combinar (h1, h2) como par.
