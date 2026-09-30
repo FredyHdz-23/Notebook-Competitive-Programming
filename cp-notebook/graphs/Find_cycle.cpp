@@ -1,3 +1,4 @@
+//O(n+m)
 vector<pii> findCycle(vector<vi>& adj, int n){
     vi vis(n + 1), par(n + 1, -1);
     vector<pii> cyc;
